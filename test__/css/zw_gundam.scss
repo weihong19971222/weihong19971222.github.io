@@ -1,14 +1,15 @@
 @import"zw_nav.scss";
 @import"zw_banner.scss";
 #gundam_model{
-    margin-top:50px ;
+    margin-top:70px ;
     h3{
         font-weight: 900;
         text-align: center;
     }
     .row{
         position: relative;
-        .col-2{
+        padding:25px;
+        .col-md-2{
             padding: 0;
             transform: skewX(-10deg) scale(1, 1);
             border-radius: 3px;
@@ -26,6 +27,21 @@
             }
             &:hover img{
                 opacity: 1;
+            }
+        }
+    }
+}
+@media(max-width:768px){
+    #gundam_model{
+        .row{
+            .col-md-2{
+                transform:scale(1, 1);
+                img{
+                    width: 100%;
+                }
+                &:hover{
+                    transform:scale(1.2, 1.2);
+                }
             }
         }
     }

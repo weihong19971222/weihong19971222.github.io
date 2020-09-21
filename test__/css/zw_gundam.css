@@ -252,7 +252,7 @@ header nav ul li a:hover {
 }
 
 #gundam_model {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 #gundam_model h3 {
@@ -262,9 +262,10 @@ header nav ul li a:hover {
 
 #gundam_model .row {
   position: relative;
+  padding: 25px;
 }
 
-#gundam_model .row .col-2 {
+#gundam_model .row .col-md-2 {
   padding: 0;
   -webkit-transform: skewX(-10deg) scale(1, 1);
           transform: skewX(-10deg) scale(1, 1);
@@ -275,19 +276,33 @@ header nav ul li a:hover {
   transition: 0.5s;
 }
 
-#gundam_model .row .col-2 img {
+#gundam_model .row .col-md-2 img {
   opacity: 0.8;
   width: 100%;
 }
 
-#gundam_model .row .col-2:hover {
+#gundam_model .row .col-md-2:hover {
   cursor: pointer;
   z-index: 5;
   -webkit-transform: skewX(-10deg) scale(1.2, 1.2);
           transform: skewX(-10deg) scale(1.2, 1.2);
 }
 
-#gundam_model .row .col-2:hover img {
+#gundam_model .row .col-md-2:hover img {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #gundam_model .row .col-md-2 {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  #gundam_model .row .col-md-2 img {
+    width: 100%;
+  }
+  #gundam_model .row .col-md-2:hover {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+  }
 }
 /*# sourceMappingURL=zw_gundam.css.map */
