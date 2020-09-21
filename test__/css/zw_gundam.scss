@@ -35,12 +35,11 @@
     #gundam_model{
         .row{
             .col-md-2{
+                height: 150px;
                 transform:scale(1, 1);
-                img{
-                    width: 100%;
-                }
                 &:hover{
-                    transform:scale(1.2, 1.2);
+                    height: 180px;
+                    transform:scale(1, 1);
                 }
             }
         }
