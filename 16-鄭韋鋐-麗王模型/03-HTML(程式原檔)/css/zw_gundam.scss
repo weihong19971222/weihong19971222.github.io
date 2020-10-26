@@ -1,124 +1,65 @@
 @import"zw_nav.scss";
 @import"zw_banner.scss";
 @import"zw_gundam_s1.scss";
-#model_tool{
-    margin-top: 30px;
-    width: 100%;
-    .model_tool_bg{
-        width: 100%;
-        background-color:  #7e7d80;
+@import"zw_model_tool.scss";
+@mixin w1200 {
+    @media(max-width:1200px){
+        @content;
     }
+}
+#info{
     h3{
         font-weight: 900;
-        text-align: center;
     }
-    #model_tool_cont{
+    .row{
+        margin-top:30px ;
         width: 100%;
-        padding: 0;
-        .row{
-            .col-lg-6{
-                #model_tool_btn_group{
-                    display: flex;
-                    justify-content: space-between;
-                    font-size: 20px;
-                    .model_tool_btn{
-                        text-align: center;
-                        border-radius:10px 10px 0 0;
-                        width: 33%;
-                        background-color:#b1b9c6;
-                        font-weight: 900;
-                        color: #331e26;
-                    }
-                    &:hover{
-                        cursor: pointer;
-                    }
-                    .model_tool_btn.active{
-                        background-color:#9ca1aa;
-                    }
-                }
-                #model_tool_imgbtn_group{
-                    height: 200px;
-                    background-color: #9ca1aa;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    .model_tool_imgbtn{
-                        position: relative;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100px;
-                        height: 100px;
-                        background-color:#5d5a56;
-                        border-radius: 15px;
-                        border: 2px solid white;
-                        opacity: 0.6;
-                        transition: 0.5s;
-                        overflow: hidden;
-                        .model_tool_imgbtn_mask{
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            top: 0;
-                            background-color:#332b1e;
-                            transform: 0.5s;
-                        }
-                        p{
-                            position: absolute;
-                            bottom:5px;
-                            font-weight: 900;
-                            color: white;
-                        }
-                        img{
-                            width: 80%;
-                        }
-                        &:hover{
-                            opacity: 1;
-                            cursor: pointer;
-                        }
-                        &:hover .model_tool_imgbtn_mask{
-                            animation-name: moveTop;
-                            animation-duration: 1s;
-                            animation-fill-mode:forwards;
-                        }
-                    }
-                    .model_tool_imgbtn.active{
-                        width: 120px;
-                        height: 120px;
-                        opacity: 1;
-                        .model_tool_imgbtn_mask{
-                            display: none;
-                        }
-                    }
-                }
-                #model_tool_text{
-                    background-color:#9ca1aa;
-                    display: flex;
-                    height: 210px;
-                    justify-content: center;
-                    p{
-                        width: 80%;
-                    }
-                    
+        margin: 0;
+        .col-md-3{
+            width: 100%;
+            #big_logo{
+                background-color: #467080;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
                 }
             }
-            #model_tool_video{
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            #info_time{
+                font-family: DFKai-sb;
+                text-align: center;
+                
+            }
+        }
+        .col-md-8{
+            width: 100%;
+            background-color: #7e7d80;
+            padding: 10px 10px 0 10px;
+            // height: 500px;
+            #map{
+                width: 100%;
                 iframe{
-                    width: 90%;
+                    width: 100%;
                     height: 300px;
+                    @include w1200{
+                        height: 250px;
+                    }
                 }
             }
         }
     }
 }
-@keyframes moveTop{
-    0%{
-        transform: translateY(0);
-    }
-    100%{
-        transform: translateY(-100px);
+
+
+
+
+footer{
+    position: relative;
+    height: 60px;
+    background-color: #9C9EA1;
+    p{
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 }
