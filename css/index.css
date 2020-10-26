@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-body main .container .row .col-6 .card .card-img-top {
+body main .container .row .col-md-6 .card .card-img-top {
   height: 50px;
   background-color: #bbb7b7;
 }

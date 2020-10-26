@@ -1,0 +1,88 @@
+header{
+    background-color: #242325;
+    width: 100%;
+    height: 80px;
+    nav{
+        display: flex;
+        justify-content: space-between;
+        background-color: #242325;
+        height: 100%;
+        #nav_btn{
+            display: none;
+        }
+        h1{
+            line-height: 80px;
+            color: white;
+            font-weight:900;
+            text-shadow: 0 5px 5px red,0 6px 9px black;
+            margin: 0;
+        }
+        ul{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            li{
+                margin-right:20px ;
+
+                a{
+                    color: #C8C8C8;
+                    font-size: 20px;
+                    font-weight: 900;
+                    &:hover{
+                        text-decoration: none;
+                        color: #9c9c9c;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width:768px){
+    header{
+        position: relative;
+        nav{
+            align-items: center;
+            #nav_btn{
+                float: right;
+                width: 60px;
+                height: 60px;
+                background-color: #C8C8C8;
+                border-radius: 5px;
+                opacity: 0.6;
+                border: 3px solid #B3B3B3;
+                display: flex;
+                align-items: center;
+                transition: 0.5s;
+                img{
+                    width: 100%;
+                    transform: scale(1, 1);
+                    transition: 0.5s;
+                }
+                &:hover{
+                    opacity: 1;
+                    cursor: pointer;
+                }
+                &:hover img{
+                    transform: scale(1.2, 1.2);
+                }
+            }
+            ul{
+                z-index: 5;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                background-color: #242325;
+                padding: 0;
+                display: none;
+                transition: 0.5s;
+                width: 100%;
+            }
+            ul.active{
+                display: inline;
+            }
+
+        }
+    }
+    
+}
