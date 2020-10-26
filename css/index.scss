@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    main{
+        .container{
+            .row{
+                .col-6{
+                    .card{
+                        .card-img-top{
+                            height: 50px;
+                            background-color: rgb(187, 183, 183);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
