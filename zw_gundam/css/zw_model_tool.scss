@@ -1,0 +1,148 @@
+@mixin w990 {
+    @media(max-width:990px){
+        @content;
+    }
+}
+@mixin w400 {
+    @media(max-width:400px){
+        @content;
+    }
+}
+#model_tool{
+    margin-top: 30px;
+    width: 100%;
+    .model_tool_bg{
+        background-attachment: fixed;
+        width: 100%;
+        background-image: url("../img/gray_bg.jpg");
+        background-size: cover;
+        // background-color:#b1b9c6 ;
+        box-shadow: 0px 5px 10px rgb(190, 190, 190);
+        // #7e7d80
+    }
+    h3{
+        font-weight: 900;
+        text-align: center;
+    }
+    #model_tool_cont{
+        width: 100%;
+        padding: 0;
+        .row{
+            width: 100%;
+            margin: 0;
+            .col-lg-6{
+                #model_tool_btn_group{
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 20px;
+                    .model_tool_btn{
+                        text-align: center;
+                        border-radius:10px 10px 0 0;
+                        width: 33%;
+                        background-color:#9ca1aa;
+                        font-weight: 900;
+                        color: #331e26;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    .model_tool_btn.active{
+                        // #9ca1aa
+                        background-color:#7e7d80;
+                        
+                    }
+                }
+                #model_tool_imgbtn_group{
+                    height: 200px;
+                    background-color: #7e7d80;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    .model_tool_imgbtn{
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100px;
+                        height: 100px;
+                        background-color:#5d5a56;
+                        border-radius: 15px;
+                        border: 2px solid white;
+                        opacity: 0.6;
+                        transition: 0.5s;
+                        overflow: hidden;
+                        .model_tool_imgbtn_mask{
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            background-color:#332b1e;
+                            transform: 0.5s;
+                        }
+                        p{
+                            position: absolute;
+                            bottom:5px;
+                            font-weight: 900;
+                            color: white;
+                        }
+                        img{
+                            width: 80%;
+                        }
+                        &:hover{
+                            opacity: 1;
+                            cursor: pointer;
+                        }
+                        &:hover .model_tool_imgbtn_mask{
+                            animation-name: moveTop;
+                            animation-duration: 1s;
+                            animation-fill-mode:forwards;
+                        }
+                    }
+                    .model_tool_imgbtn.active{
+                        width: 120px;
+                        height: 120px;
+                        opacity: 1;
+                        .model_tool_imgbtn_mask{
+                            display: none;
+                        }
+                    }
+                }
+                #model_tool_text{
+                    background-color:#7e7d80;
+                    display: flex;
+                    height: 210px;
+                    @include w400{
+                        height: 260px;
+                    }
+                    justify-content: center;
+                    p{
+                        width: 80%;
+                    }
+                    
+                }
+            }
+            #model_tool_video{
+                border-radius: 15px 15px 0 0;
+                background-color:#7e7d80;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include w990{
+                    border-radius: 0;
+                }
+                iframe{
+                    width: 90%;
+                    height: 300px;
+                }
+            }
+        }
+    }
+}
+@keyframes moveTop{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-100px);
+    }
+}
