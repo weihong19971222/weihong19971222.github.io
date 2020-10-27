@@ -11,6 +11,12 @@ html{
     scroll-behavior: smooth;
 }
 #zw_about{
+    .card-body{
+        background-color: gray;
+        h5{
+            color: black;
+        }
+    }
     h5{
         font-weight: 900;
         color: rgb(172, 175, 12);

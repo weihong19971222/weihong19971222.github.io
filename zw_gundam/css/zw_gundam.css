@@ -511,6 +511,14 @@ html {
   scroll-behavior: smooth;
 }
 
+#zw_about .card-body {
+  background-color: gray;
+}
+
+#zw_about .card-body h5 {
+  color: black;
+}
+
 #zw_about h5 {
   font-weight: 900;
   color: #acaf0c;

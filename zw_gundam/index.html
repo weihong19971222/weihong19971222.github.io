@@ -73,23 +73,31 @@
   <section id="gundam_model" class="container">
     <h3>鋼彈組裝模型</h3>
     <div class="row mt-1">
-      <div class="col-md-2 col-4">
+      <div data-name="MS" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_MS.png" alt="">
       </div>
-      <div class="col-md-2 col-4">
+      <div data-name="PG" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_PG.png" alt="">
       </div>
-      <div class="col-md-2 col-4">
+      <div data-name="MG" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_MG.png" alt="">
       </div>
-      <div class="col-md-2 col-4">
+      <div data-name="RG" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_RG.png" alt="">
       </div>
-      <div class="col-md-2 col-4">
+      <div data-name="HG" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_HG.png" alt="">
       </div>
-      <div class="col-md-2 col-4">
+      <div data-name="SD" data-toggle="modal" data-target=".bd-example-modal-xl" class="col-md-2 col-4 G_btn">
         <img src="img/gundam_model/btn_SD.png" alt="">
+      </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          
+        </div>
       </div>
     </div>
   </section>
@@ -144,21 +152,21 @@
     <h5 class="mt-4">販賣商品</h5>
     <div class="card-deck">
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="./img/m.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">組裝模型</h5>
           <p class="card-text">鋼彈模型 汽車模型 機車模型 軍事模型...</p>
         </div>
       </div>
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="./img/m_t.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">模型工具</h5>
           <p class="card-text">斜口鉗 筆刀 空壓機 噴筆 顏料 砂紙...</p>
         </div>
       </div>
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="./img/r.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">動漫景品</h5>
           <p class="card-text">火影忍者 海賊王 刀劍神域 鬼滅之刃...</p>
@@ -209,6 +217,43 @@
       size_auto();
       $(window).resize(function() {
           size_auto();
+      });
+
+      $MS={name:"MEGA SIZE 巨大尺寸",pp:"新手推薦指數★★★☆☆",size:"1:48",cont:"特色在於他的巨大比例零件的數量適中,但無內骨架設定不過組裝上卻是相當的簡易且輕鬆"};
+      $PG={name:"PERFECT GRADE 完美等級",pp:"新手推薦指數★★☆☆☆",size:"1:60",cont:"特色在於擁有完整的內構骨架與大量的細節分件PG等級為鋼彈組裝模型中最精密的一種等級"};
+      $MG={name:"MASTER GRADE 大師等級",pp:"新手推薦指數★★★★★",size:"1:100",cont:"特色在於模型內搭配完整骨架,可動範圍大塑膠射出成色豐富,即使簡單的素組也能有極高的完成度售價較為合理,為目前市面上的主流等級"};
+      $RG={name:"REAL GRADE 真實等級",pp:"新手推薦指數★★☆☆☆",size:"1:144",cont:"近年來BANDAI所推出的新系列特色在於強調在1/144的較小比例中也擁有骨架且零件的細節與分件也逼近PG等級的精密度即使是素組並搭配上內附的貼紙完成後的成品也能非常的漂亮唯一缺點就是零件太小,容易造成組裝困難或毀損"};
+      $HG={name:"HIGH GRADE 高級等級",pp:"新手推薦指數★★★★☆",size:"1:144(另有1:100 1:60 無骨架版本也通歸於此類)",cont:"特色在於新機體推出速度快機體種類及系列豐富零件量適中,組裝起來較無太大難度外觀整體比例通常會是最好的價格上相對的平民,非常適合新手入門的一個等級"};
+      $SD={name:"SD&BB",pp:"新手推薦指數★★★★★",size:"Q版",cont:"特色在於把原本的真實比例扭曲變形，壓縮成二或三頭身的矮短造型零件少,不須模型工具也能組裝"};
+      $MODEL={};
+      $(".G_btn").click(function(){
+        switch($(this).attr("data-name")){
+          case "MS":
+            $MODEL=$MS;
+            break;
+          case "PG":
+            $MODEL=$PG;
+            break;
+          case "MG":
+            $MODEL=$MG;
+            break;
+          case "RG":
+            $MODEL=$RG;
+            break;
+          case "HG":
+            $MODEL=$HG;
+            break;
+          case "SD":
+            $MODEL=$SD;
+            break;     
+        };
+        $(".modal-content").html("");
+        $(".modal-content").html(`
+          <h1 class="bg-dark text-white">${$MODEL.name}</h1>
+          <h4>${$MODEL.size}</h4>
+          <h5>${$MODEL.pp}</h5>
+          <p>${$MODEL.cont}</p>`);
+
       });
 
   
