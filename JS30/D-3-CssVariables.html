@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/d-3/d-3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-3-CssVariables</title>
+</head>
+
+<body>
+    <main>
+        <h2>Update CSS Variables with <span>JS</span></h2>
+        <div id="contains">
+            <label for="spacing">間距:</label>
+            <input type="range" name="spacing" id="spacing" min="10" max="200" value="10" data-sizing="px">
+
+            <label for="blur">模糊:</label>
+            <input type="range" name="blur" id="blur" min="0" max="25" value="10" data-sizing="px">
+
+            <label for="base">顏色:</label>
+            <input type="color" name="base" id="base" value="#ff00ff">
+        </div>
+        <img src="./image/background.jpg">
+    </main>
+
+    <script>
+        const inputs = document.querySelectorAll('#contains input');
+
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        }
+
+        inputs.forEach(input => input.addEventListener('change', handleUpdate));
+        inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-12-KeySequenceDetection</title>
+</head>
+
+<body>
+    <h1>請輸入"benz" 顯示圖片</h1>
+    <div id="pic" style="width: 100%;"></div>
+    <script>
+        const pressed = [];
+        const secretCode = 'benz';
+        const pic=document.querySelector("#pic");
+
+        window.addEventListener('keyup', (e) => {
+            // push 方法會添加一個或多個元素至陣列的末端
+            pressed.push(e.key);
+            // 當第一個參數為負值時, splice 會從陣列末端倒數要切的陣列
+            pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+            // join 方法能夠將陣列中的每個元素連接並合併為一個字串
+            if (pressed.join('') === secretCode) {
+                innpic();
+            }
+        })
+
+        function innpic(){
+            pic.innerHTML=(`<img style="width: 50%;" src="./image/background.jpg">`);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-11-CustomVideoPlayer</title>
+    <link rel="stylesheet" href="./css/d-11/d-11.css">
+
+</head>
+
+<body>
+    <main>
+        <div class="player">
+            <video class="player_video viewer"
+                src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b78c67f74d7ee39fdb4fef01d12420&profile_id=164"></video>
+
+            <div class="player_controls">
+                <!-- 進度條 -->
+                <div class="progress">
+                    <div class="progress_filled"></div>
+                </div>
+                <div style="display: flex;justify-content: space-around;width: 100%; font-size: 14px;">
+                    <button class="player_button toggle" title="Toggle Play">►</button>
+                    <label for="volume">音量</label>
+                    <input type="range" id="volume" name="volume" class="player_slider" min="0" max="1" step="0.05"
+                        value="1">
+                    <label for="playbackRate">播放速度</label>
+                    <input type="range" id="playbackRate" name="playbackRate" class="player_slider" min="0.5" max="2"
+                        step="0.1" value="1">
+                    <button data-skip="-10" class="player_button">« 10s</button>
+                    <button data-skip="25" class="player_button">25s »</button>
+                    <button class="player_button fullscreen">FS</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const player = document.querySelector('.player');
+        const video = player.querySelector('.viewer');
+        const toggle = player.querySelector('.toggle');
+        const skipButtons = player.querySelectorAll('[data-skip]');
+        const ranges = player.querySelectorAll('.player_slider');
+        const progressBar = player.querySelector('.progress_filled');
+        const progress = player.querySelector('.progress');
+        const fullscreen = player.querySelector('.fullscreen');
+
+        // 觀察video狀態 如為暫停則撥放 撥放則暫停
+        function togglePlay() {
+            video[video.paused ? 'play' : 'pause']();
+        }
+
+        // 播放鍵icon切換
+        function updateButton() {
+            const icon = this.paused ? '►' : '❚ ❚';
+            toggle.textContent = icon;
+        }
+
+        // 跳轉 video 的 currentTime 屬性代表目前的播放時間
+        function skip() {
+            video.currentTime += parseFloat(this.dataset.skip);
+        }
+
+        // 音量滑動桿與播放速度滑動桿
+        function handleRangeUpdate() {
+            video[this.name] = this.value;
+        }
+
+        // 顯示進度條 duration 屬性代表 video 物件的總時間
+        function handleProgress() {
+            const percent = (video.currentTime) / (video.duration) * 100;
+            // console.log(percent);
+            progressBar.style.flexBasis = `${percent}%`;
+        }
+
+        // 進度條拖曳
+        function scrub(e) {
+            const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+            video.currentTime = scrubTime;
+        }
+        let mousedown = false;
+
+        // 全螢幕
+        function toggleScreen() {
+            if (!document.webkitFullscreenElement) {
+                player.webkitRequestFullScreen();
+            } else {
+                // exitFullscreen 只能對document使用, 是將所有全屏的元素解除全屏
+                document.webkitExitFullscreen();
+            }
+        }
+
+        video.addEventListener('click', togglePlay);
+        toggle.addEventListener('click', togglePlay);
+        video.addEventListener('play', updateButton);
+        video.addEventListener('pause', updateButton);
+        skipButtons.forEach(button => button.addEventListener('click', skip));
+        ranges.forEach(range => {
+            range.addEventListener('input', handleRangeUpdate);
+        })
+        // timeudpate 事件就是用來監聽 currentTime 更新的瞬間
+        video.addEventListener('timeupdate', handleProgress);
+        progress.addEventListener('click', scrub);
+        // 在移動時(mouseover)判定若mousedown參數為true時執行事件(scrub)
+        progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+        progress.addEventListener('mousedown', () => mousedown = true);
+        progress.addEventListener('mouseup', () => mousedown = false);
+        fullscreen.addEventListener('click', toggleScreen);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-16-MouseMoveShadow</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        main {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!--contenteditable 元素可被用戶編輯 -->
+        <h1 contenteditable>🎵Wei_Hong!</h1>
+    </main>
+
+    <script>
+        const hero = document.querySelector('main');
+        const text = hero.querySelector('h1');
+        // 自訂的最大陰影移動距離
+        const walk = 100;
+
+        function shadow(e) {
+            // 記錄滑鼠位置 在main上時 相當於
+            // let x = e.offsetX;
+            // let y = e.offsetY;
+            let { offsetX: x, offsetY: y } = e;
+            // 若滑鼠不在main上 修正座標  (在h1上)
+            if (this !== e.target) {
+                x +=  e.target.offsetLeft;
+                y +=  e.target.offsetTop;
+            }
+            // 記錄 main 元素的總長、總寬
+            const { offsetWidth: width, offsetHeight: height } = hero;
+            // 計算相對位移，轉換為陰影位置 
+            // Math.round 數字顯示到個位數
+            const xWalk = Math.round((x / width * walk) - (walk / 2));
+            const yWalk = Math.round((y / height * walk) - (walk / 2));
+            // textShadow 前兩個參數代表陰影位置，第三個參數代表陰影擴散距離，第四個參數代表陰影顏色
+            text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+      ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+      ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+      ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+    `;
+
+        }
+
+        hero.addEventListener('mousemove', shadow);
+    </script>
+</body>
+
+</html>

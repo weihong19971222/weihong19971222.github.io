@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-5-FlexPanelGallery</title>
+    <link rel="stylesheet" href="./css/d-5/d-5.css">
+</head>
+
+<body>
+    <main>
+        <div class="panels">
+            <div class="panel panel1">
+                <p>惡</p>
+                <p>鬼</p>
+                <p>王</p>
+            </div>
+            <div class="panel panel2">
+                <p>鬼</p>
+                <p>滅</p>
+                <p>殺</p>
+            </div>
+            <div class="panel panel3">
+                <p>鬼</p>
+                <p>之</p>
+                <p>女</p>
+            </div>
+            <div class="panel panel4">
+                <p>炎</p>
+                <p>刃</p>
+                <p>柱</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const panels = document.querySelectorAll('.panel');
+        panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+        // transitionend 事件會在 CSS transition 结束后觸發
+        panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+        function toggleOpen() {
+            this.classList.toggle('open');
+        }
+
+        function toggleActive(e) {
+            console.log(e.propertyName)
+            // e.propertyName在不同瀏覽器結果不同 但都有"flex"
+            // propertyName屬性返回與轉換關聯的CSS屬性名稱
+            if (e.propertyName.includes('flex')) {
+                this.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

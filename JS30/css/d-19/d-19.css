@@ -1,0 +1,45 @@
+body {
+  background-color: #ffae00;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  padding-top: 50px;
+}
+
+main .controls button {
+  font-size: 16px;
+}
+
+main .photobooth {
+  margin-top: 20px;
+  text-align: center;
+}
+
+main .photobooth .photo {
+  border: 1px solid red;
+}
+
+main .photobooth .photo2 {
+  border: 1px solid blue;
+}
+
+main .photobooth .player {
+  border: 1px solid red;
+}
+
+main .photobooth img {
+  width: 300px;
+}
+
+main .photobooth .strip img {
+  width: 100px;
+  overflow-x: scroll;
+  padding: 0.8rem 0.8rem 2.5rem 0.8rem;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  background: white;
+  margin-right: 5px;
+}
+/*# sourceMappingURL=d-19.css.map */

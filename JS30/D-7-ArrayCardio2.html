@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-7-ArrayCardio2</title>
+</head>
+
+<body>
+    <script>
+        const fiancee = [
+            { name: 'Tomato', year: 1989 },
+            { name: 'Totoro', year: 1896 },
+            { name: 'Jedi', year: 2008 },
+            { name: 'Judy', year: 1970 },
+            { name: 'Dudi', year: 1969 },
+            { name: 'David', year: 1950 }
+        ];
+
+        // some一個陣列中只要有一個以上的元素通過自訂的回呼函式所給定的測試, 回傳的結果為true, 反之, 若全部都沒通過測試, 結果為false
+        // 裡面是否有人大於18歲
+        const hasAdult = fiancee.some(person => new Date().getFullYear() - person.year >= 18);
+        console.log(hasAdult)
+
+        // every一個陣列中所有的元素通過自訂的回呼函式所給定的測試, 回傳的結果為true, 反之, 若有其中一項沒通過測試, 結果為false
+        // 裡面是否所有人大於18歲
+        const allAdults = fiancee.every(person => new Date().getFullYear() - person.year >= 18);
+        console.log(allAdults)
+
+        // find這個方法和filter()很像, 差別在於它只能回傳第一個通過測試的內容, 而非全部
+        // 找出第一個未滿18歲的人
+        const girl = fiancee.find(person => (new Date()).getFullYear() - person.year <= 18);
+        console.log(girl)
+
+        // findIndex回傳第一個通過回呼函式測試的元素的index
+        // 回傳第一個未滿18歲人的indwx
+        const girlIndex = fiancee.findIndex(person => (new Date()).getFullYear() - person.year <= 18);
+        console.log(girlIndex);
+
+        // slice可以將某個陣列片段複製為一個新的陣列 可輸入兩個參數, 第一個代表從哪邊切割 第二個代表切割到哪邊(不包含此). 可以只輸入頭代表只切頭, 也可都不輸入, 代表直接複製整個函式.
+        // ...spread operator(ES6功能)，可以將陣列轉換成單一數組，或將單一數組轉換成陣列。
+        // 因為連續使用comments.slice()，所以會讓數值變成[Array[], Array[]]，為了打破第二層的array，需使用...，把結構轉變成[{}, {}, {}, {}, ...]。
+        // 過濾girlIndex的名單
+        const newFiancee = [
+            ...fiancee.slice(0, girlIndex),
+            ...fiancee.slice(girlIndex + 1)
+        ];
+        console.log(newFiancee)
+
+        // splice能夠從指定的位置開始移除指定數目的陣列欄位. 回傳的值為被刪掉的欄位
+        // 特別注意的是splice會直接對原陣列作用, 因此若不想更動原陣列, 可以先複製後再使用
+        // 第一個參數是要刪除的index起點, 第二個參數是要刪除的數量，第三個參數之後是要新加入的內容
+        // 先複製
+        const newFiancee2 = fiancee.slice();
+        // 再切割複製後的陣列
+        newFiancee2.splice(girlIndex, 1);
+        console.log(newFiancee2)
+
+    </script>
+</body>
+
+</html>

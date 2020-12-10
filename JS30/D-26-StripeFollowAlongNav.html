@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-26-StripeFollowAlongNav</title>
+    <link rel="stylesheet" href="./css/d-26/d-26.css">
+</head>
+
+<body>
+    <nav class="top">
+        <!-- 下拉式選單的背景 -->
+        <div class="dropdownBackground">
+            <!-- 黏在背景上的箭頭 -->
+            <span class="arrow"></span>
+        </div>
+
+        <ul class="cool">
+            <li>
+                <a href="#">About Me</a>
+                <div class="dropdown dropdown1">
+                    <div class="bio">
+                        <img src="./image/background.jpg" width="200px">
+                        <p>C63S，510匹馬力與71.4公斤米扭力，搭配全新AMG SpeedShift MCT 9G變速箱，0-100km/h加速最短僅需3.9秒</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#">Courses</a>
+                <ul class="dropdown courses">
+                    <li>
+                        <span class="code">RFB</span>
+                        <a href="https://ReactForBeginners.com">React For Beginners</a>
+                    </li>
+                    <li>
+                        <span class="code">ES6</span>
+                        <a href="https://ES6.io">ES6 For Everyone</a>
+                    </li>
+                    <li>
+                        <span class="code">STPU</span>
+                        <a href="https://SublimeTextBook.com">Sublime Text Power User</a>
+                    </li>
+                    <li>
+                        <span class="code">WTF</span>
+                        <a href="http://flexbox.io">What The Flexbox?!</a>
+                    </li>
+                    <li>
+                        <span class="code">LRX</span>
+                        <a href="http://LearnRedux.com">Learn Redux</a>
+                    </li>
+                    <li>
+                        <span class="code">CLPU</span>
+                        <a href="http://CommandLinePowerUser.com">Command Line Power User</a>
+                    </li>
+                    <li>
+                        <span class="code">MMD</span>
+                        <a href="http://MasteringMarkdown.com">Mastering Markdown</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Other Links</a>
+                <ul class="dropdown dropdown3">
+                    <li><a class="button" href="https://twitter.com/mercedesbenz">Twitter</a></li>
+                    <li><a class="button" href="https://www.facebook.com/MercedesBenz">Facebook</a></li>
+                    <li><a class="button"
+                            href="https://www.mercedes-benz.com.tw/passengercars.html?group=all&subgroup=see-all&view=BODYTYPE">Mercedes-Benz</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        const nav = document.querySelector('.top');
+        const triggers = document.querySelectorAll('.cool > li');
+        const background = document.querySelector('.dropdownBackground');
+
+        // 處理移入效果
+        function handleEnter() {
+            // trigger-enter trigger-enter-active 分開添加
+            // 原因是 當一個元素設定為 display: none ，瀏覽器根本不會將呈現出來
+            // 而 opacity 的切換對某個「確實存在」的元素才有效果
+            this.classList.add('trigger-enter');
+            setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+            background.classList.add('open');
+
+            const dropdown = this.querySelector('.dropdown');
+            // getBoundingClientRect() 取得該下拉式選單 dropdown 的座標位置跟寬高等資訊
+            const dropdownCoords = dropdown.getBoundingClientRect();
+            const navCoords = nav.getBoundingClientRect();
+            // - navCoords.top - navCoords.left 這兩個選項是用在上方還有其他物件時
+            // 目前沒有所以都是-0
+            const coords = {
+                height: dropdownCoords.height,
+                width: dropdownCoords.width,
+                top: dropdownCoords.top - navCoords.top,
+                left: dropdownCoords.left - navCoords.left,
+            }
+
+            background.style.setProperty('width', `${coords.width}px`);
+            background.style.setProperty('height', `${coords.height}px`);
+            background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+        }
+
+        // 處理移出效果
+        function handleLeave() {
+            this.classList.remove('trigger-enter', 'trigger-enter-active');
+            background.classList.remove('open');
+        }
+
+        triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+        triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+
+        // mouseover：不論滑鼠進入被選元素以及它裡面的子元素時，都會觸發
+        // mouseenter：只有在滑鼠剛進入被選元素時觸發，當進入其子元素時不會再觸發
+        // mouseout：不論滑鼠離開被選元素還是任何子元素，都會觸發
+        // mouseleave：只有在滑鼠離開被選元素時，才會觸發
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    background-color: cadetblue;
+}
+.hl{
+    background-color: yellow;
+} 
+.population{
+    color: rgb(88, 88, 88);
+}
+main{
+    width: 100%;
+    height: 100vh;
+    // overflow: hidden;
+    // background-color: cadetblue;
+    .search-form{
+        text-align: center;
+        .search{
+            margin-top: 50px;
+            width: 90%;
+            font-size:32px ;
+            border: 10px solid rgb(207, 204, 204);
+            text-align: center;
+            border-radius: 5px;
+        }
+        .suggestions{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            li{
+                width: 80%;
+                list-style: none;
+                margin-bottom: 2px;
+                font-size: 32px;
+                display: flex;
+                justify-content: space-between;
+                text-transform:capitalize;
+                // odd單 even雙
+                &:nth-child(even) {
+                    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+                    background: linear-gradient(to bottom,   #ffffff 0%,#b9b9b9 100%);
+                  }
+                &:nth-child(odd) {
+                    transform: perspective(100px) rotateX(-3deg) translateY(3px);
+                    background: linear-gradient(to top,  #b9b9b9 0%,#ffffff 100%);
+                  }
+            }
+        }
+    }
+}

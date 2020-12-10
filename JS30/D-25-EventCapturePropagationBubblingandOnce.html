@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-25-Event-Capture-Propagation-BubblingandOnce</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        div {
+            width: 100%;
+            padding: 100px;
+        }
+
+        .one {
+            background: thistle;
+        }
+
+        .two {
+            background: mistyrose;
+        }
+
+        .three {
+            background: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <div class="two">
+            <div class="three">
+            </div>
+        </div>
+    </div>
+    <button></button>
+    <script>
+        const divs = document.querySelectorAll('div');
+        const button = document.querySelector('button');
+
+        // 點擊最裡面的元素，會同時觸發三個事件 順序由內而外 three 、 two 、 one
+        // 點擊中間的元素 two 、 one
+        // 點擊最外面的元素 one
+        function logText(e) {
+            console.log(this.classList.value);
+            // e.stopPropagation(); // 停止觸發後面事件
+        }
+
+        divs.forEach(div => div.addEventListener('click', logText, {
+            capture: false, //由內而外觸發 預設
+            once: true //這是個惡毒的屬性，會在事件觸發後直接將監聽器移除，因此事件只能觸發一次。如果我們想讓某個事件只執行一次，可以使用該屬性。
+        }));
+
+        button.addEventListener('click', () => {
+            console.log('Click!!!');
+        }, {
+            once: true
+        });
+    </script>
+</body>
+
+</html>

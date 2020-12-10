@@ -1,0 +1,59 @@
+body{
+    margin: 0;
+    background-color: skyblue;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Comic Sans MS";
+    font-size: 20px;
+    .items {
+        height:500px;
+        padding: 100px;
+        width:80%;
+        border:1px solid white;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        // 規定段落中的文本不進行換行
+        white-space: nowrap;
+        // 文本不能被選擇
+        user-select: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        transform: scale(0.98);
+        // will-change為web開發者提供了一種告知瀏覽器該元素會有哪些變化的方法
+        // 這樣瀏覽器可以在元素屬性真正發生變化之前提前做好對應的優化準備工作
+        will-change: transform;
+        position: relative;
+        background: rgba(255,255,255,0.1);
+        font-size: 0;
+        perspective: 500px;
+        .item {
+            width:200px;
+            height: calc(100% - 40px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: 100;
+            color:rgba(0,0,0,0.15);
+            box-shadow: inset 0 0 0 10px rgba(0,0,0,0.15);
+            &:nth-child(even){
+                // scaleX(m) 指定元素由參考點橫向縮放 m 倍
+                // rotateY 就是讓元素繞著 Y 軸旋轉的意思
+                transform: scaleX(1.31) rotateY(40deg);
+                background-color: slateblue;
+            }
+            &:nth-child(odd){
+                transform: scaleX(1.31) rotateY(-40deg);
+                background-color: teal;
+            }
+        }
+    }
+    .items.active {
+        background: rgba(255,255,255,0.3);
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+        transform: scale(1);
+    }
+}

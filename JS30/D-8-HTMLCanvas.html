@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+        }
+    </style>
+    <title>D-8-HTMLCanvas</title>
+</head>
+
+<body>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <script>
+        const canvas = document.querySelector('#draw');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let lastX = 0;//繪畫起始位置
+        let lastY = 0;//繪畫起始位置
+        let hue = 0;//設定顏色參數
+        let direction = true //設定軌跡反轉參數
+        ctx.strokeStyle = '#BADA55'; //定義繪畫的顏色
+        ctx.lineJoin = 'round'; //定義兩線相交時的拐角練習 round為圓弧
+        ctx.lineCap = 'round'; //定義結束端點樣式 round為圓弧
+        ctx.lineWidth = 100; //定義寬度
+
+        function draw(e) {
+            if (!isDrawing) return;
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;//更改顏色。
+            ctx.beginPath();//繪畫啟動
+            ctx.moveTo(lastX, lastY);//起始位置
+            ctx.lineTo(e.offsetX, e.offsetY); //畫到的位置
+            ctx.stroke();//代表繪製以定義的路徑
+            // 每次畫完後更新下筆點
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+
+            hue++;
+            if (hue >= 360) {
+                hue = 0;
+            }
+            // 筆畫由大到小或相反
+            if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+                direction = !direction;
+            }
+
+            if (direction) {
+                ctx.lineWidth++
+            } else {
+                ctx.lineWidth--
+            }
+        }
+
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            // 每次滑鼠按下時先將下筆點移到畫筆位置
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);//mouseout移開視窗時
+
+       
+    </script>
+</body>
+
+</html>

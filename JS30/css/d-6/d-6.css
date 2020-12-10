@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  background-color: cadetblue;
+}
+
+.hl {
+  background-color: yellow;
+}
+
+.population {
+  color: #585858;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+main .search-form {
+  text-align: center;
+}
+
+main .search-form .search {
+  margin-top: 50px;
+  width: 90%;
+  font-size: 32px;
+  border: 10px solid #cfcccc;
+  text-align: center;
+  border-radius: 5px;
+}
+
+main .search-form .suggestions {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .search-form .suggestions li {
+  width: 80%;
+  list-style: none;
+  margin-bottom: 2px;
+  font-size: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-transform: capitalize;
+}
+
+main .search-form .suggestions li:nth-child(even) {
+  -webkit-transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+          transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b9b9b9));
+  background: linear-gradient(to bottom, #ffffff 0%, #b9b9b9 100%);
+}
+
+main .search-form .suggestions li:nth-child(odd) {
+  -webkit-transform: perspective(100px) rotateX(-3deg) translateY(3px);
+          transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: -webkit-gradient(linear, left bottom, left top, from(#b9b9b9), to(#ffffff));
+  background: linear-gradient(to top, #b9b9b9 0%, #ffffff 100%);
+}
+/*# sourceMappingURL=d-6.css.map */

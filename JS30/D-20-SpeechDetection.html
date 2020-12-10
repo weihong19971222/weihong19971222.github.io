@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-20-SpeechDetection</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffae00;
+            display: flex;
+            justify-content: center;
+        }
+
+        .words {
+            margin-top: 50px;
+            background-color: white;
+            width: 500px;
+            border-radius: 5px;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            line-height: 30px;
+            padding: 10px 40px;
+            position: relative;
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+            background-size: 100% 30px;
+        }
+
+        .words:before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            top: 0;
+            left: 30px;
+            bottom: 0;
+            border: 1px solid;
+            border-color: transparent #efe4e4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="words" contenteditable>
+    </div>
+    <script>
+        // Web Speech API 主要分成兩塊，一塊是 Speech Synthesis ，即文字轉聲音
+        // 另一塊是 Speech Recognition，即聲音轉文字
+        // 檢查瀏覽器是否有支援不需要 prefix 的 speechRecognition 介面，若沒有則將 webkit 標頭的 webkitSpeechRecognition 指定給該全域變數
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        // 要使用 speechRecognition ，必須透過 SpeechRecognition 建構式建立一個物件實例
+        const recognition = new SpeechRecognition();
+        // 讓語音識別回傳識別後的資訊（預設為false)
+        recognition.interimResult = true;
+        // 語音識別語言
+        recognition.lang = 'zh-tw';
+
+        let p = document.createElement('p');
+        const words = document.querySelector('.words');
+        words.appendChild(p);
+
+        // result 事件會在語音辨識回傳結果時被觸發
+        recognition.addEventListener('result', e => {
+            console.log(e);
+            const transcript = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+
+            const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+            p.textContent = poopScript;
+            // 回傳事件的 results[0] 內有項 isFinal 參數，當句子的被判斷為最終結果時
+            // 該 isFinal 值就會顯示為 true ，只要在那之後建立新段落即可
+            if (e.results[0].isFinal) {
+                p = document.createElement('p');
+                words.appendChild(p);
+            }
+        });
+        // end 事件當語音辨識關閉時會被觸發
+        recognition.addEventListener('end', recognition.start);
+        // 設定完後要使用 start() 才會開始辨識
+        recognition.start();
+    </script>
+</body>
+
+</html>

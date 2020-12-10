@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-14-JavascriptReferenceVScopy</title>
+</head>
+
+<body>
+    <script>
+        // Value Copy
+        let age = 100;
+        let age2 = age;
+
+        console.log(age, age2);
+        // 結果 100 100
+        age = 200
+        console.log(age, age2);
+        // 結果 200 100
+
+        // Reference Copy--------------------------------------------------------
+        const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+        const team = players;
+
+        console.log(players, team);
+        // 結果  ["Wes", "Sarah", "Ryan", "Poppy"] ["Wes", "Sarah", "Ryan", "Poppy"]
+        team[3] = 'Lux';
+        console.log(players, team);
+        //  結果 ["Wes", "Sarah", "Ryan", "Lux"] ["Wes", "Sarah", "Ryan", "Lux"]
+
+
+        // Call by Sharing （共享參考）--------------------------------------------------------
+        let superTeam = ['Otree', 'Penguin', 'Frog', 'Jim'];
+        let fakeTeam = superTeam;
+
+        fakeTeam = ['Otree', 'Penguin', 'Frog', 'Chris'];
+        console.log(fakeTeam, superTeam)
+        // 結果 ["Otree", "Penguin", "Frog", "Chris"] ["Otree", "Penguin", "Frog", "Jim"]
+
+        const team2 = players.slice();
+        // concat:join array。可以創建一個空的然後join目標。return a new array
+        const team3 = [].concat(players);
+        // ES6 Spread
+        const team4 = [...players];
+        const team5 = Array.from(players);
+        const person = {
+            name: 'Wes Bos',
+            age: 80
+        };
+        // Object.assign({}, object)，但是assign是只有one Level，若是有多層object則要利用其他方式。
+        const cap2 = Object.assign({}, person, { age: 12 });
+        console.log(cap2);
+        // 結果 {name: "Wes Bos", age: 12}
+        // obj3 = JSON.parse(JSON.stringify(obj)) 可以完整地複製物件
+        // JSON.stringigy:物件轉String JSON.parse:String轉物件
+        const dev2 = JSON.parse(JSON.stringify(person));
+        console.log(dev2);
+    </script>
+</body>
+
+</html>

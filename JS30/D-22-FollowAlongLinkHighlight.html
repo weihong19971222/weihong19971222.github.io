@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-22-FollowAlongLinkHighlight</title>
+    <link rel="stylesheet" href="./css/d-22/d-22.css">
+</head>
+
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="">M235i</a></li>
+            <li><a href="">M3</a></li>
+            <li><a href="">M4</a></li>
+            <li><a href="">X4M</a></li>
+            <li><a href="">M8</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <p>歷經20年的工藝淬鍊，延續1990年代對頂級的堅持，全新BMW 8系列再次撼動車壇。熱血方剛的賽車體魄以兼具優雅而前衛的線條潤飾，對完美極致苛求的<a href="">M850i
+                xDrive</a>，具有純正強勁的賽車基因，以及引領未來的前瞻設計與創新科技，重新定義豪華雙門跑車級距，註定成為眾所矚目的車壇亮點。</p>
+        <p>由後掠的頭燈線條順勢向後欣賞，可發現充滿肌力感的車側肩線、增大的輪圈尺寸、低斜的經典後擋玻璃設計等，為車尾造型構築出絕佳的發揮舞台。與頭燈相互爭豔的尾燈以<a
+                href="">「L」型勾勒出獨有魅力</a>，更擴展了車後擾流尾翼的上揚空間，再搭配大面積<a href="">M款運動化排氣系統</a>及 空力套件，此豪華雙門跑車以賽車基因做了最佳結尾。</p>
+        <p>M850i的車內設計依循同樣的設計語彙，時尚簡潔而大器，創造舒適且奢華的氛圍。透過匠心獨具的用料選材，車門飾板、中控台等銜接完美平順，所有的<a
+                href="">流暢線條</a>皆以縱向安排，順勢引領目光至前方道路，將往前駕馭的意念轉換成車內的線條鋪陳。</p>
+        <p>細緻的內裝設計以<a
+                href="">Merino真皮呈現</a>，從M款多功能真皮方向盤、車內飾板至全真皮跑車座椅，更加入Individual麂皮車內頂篷設計，皆展現皮革的高雅質感與細膩溫度。細節處更設置頂級水晶中控套件，排檔桿設計、中控台元件、音響控制鍵、引擎啟動鈕等處，稜角分明的
+            線條折射光影，低調閃耀的湖水藍增添奢華感受，絕對是<a href="">M850i</a>邀您入座的最高禮遇。</p>
+        <p>承襲M8 GTE賽道基因的M8，搭載最具爆發力的<a href="">4.4升V8雙渦輪雙渦流</a>增壓汽油引擎，最大馬力達600匹與76.5jgm的強勁扭力輸出，經過M GmbH專屬調校後更擁有從0到100
+            km/h加速僅需<a href="">3.3秒</a>的超凡實力。</p>
+    </div>
+
+    <script>
+        const triggers = document.querySelectorAll('a');
+        // 創造標記
+        const highlight = document.createElement('span');
+        highlight.classList.add('highlight');
+        document.body.appendChild(highlight);
+
+        function highlightLink() {
+            // getBoundingClientRect() 方法可以讓我們取得某個元素的長寬以及該元素相對於瀏覽器視窗原點的距離
+            const linkCoords = this.getBoundingClientRect();
+            // console.log(linkCoords);
+            const coords = {
+                width: linkCoords.width,
+                height: linkCoords.height,
+                top: linkCoords.top + window.scrollY,
+                left: linkCoords.left + window.scrollX
+            };
+
+            highlight.style.width = `${coords.width}px`;
+            highlight.style.height = `${coords.height}px`;
+            highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+        }
+
+        triggers.forEach(a => a.addEventListener('mouseover', highlightLink));
+
+        window.onresize = function(){
+            highlight.style.width = `0px`;
+            highlight.style.height = `0px`;
+        };
+    </script>
+</body>
+
+</html>

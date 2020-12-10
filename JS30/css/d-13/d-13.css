@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  background-color: black;
+}
+
+main {
+  margin-top: 200px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .site-wrap {
+  width: 650px;
+  background-color: #5f5f5f;
+  padding: 20px;
+  text-align: justify;
+}
+
+main .site-wrap h1 {
+  color: yellow;
+}
+
+main .site-wrap p {
+  font-size: 20px;
+  color: white;
+}
+
+main .site-wrap .slide-in {
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+main .site-wrap .align-left {
+  float: left;
+  margin-right: 20px;
+}
+
+main .site-wrap .align-right {
+  float: right;
+  margin-left: 20px;
+}
+
+main .site-wrap .align-left.slide-in {
+  -webkit-transform: translateX(-30%) scale(0.95);
+          transform: translateX(-30%) scale(0.95);
+}
+
+main .site-wrap .align-right.slide-in {
+  -webkit-transform: translateX(30%) scale(0.95);
+          transform: translateX(30%) scale(0.95);
+}
+
+main .site-wrap .slide-in.active {
+  opacity: 1;
+  -webkit-transform: translateX(0%) scale(1);
+          transform: translateX(0%) scale(1);
+}
+/*# sourceMappingURL=d-13.css.map */

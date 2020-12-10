@@ -1,0 +1,19 @@
+{
+    "unit":[
+        "DrumKit","clock","CssVariables","ArrayCardio","FlexPanelGallery",
+        "TypeAhead","ArrayCardio2","HTMLCanvas","DevTools","HoldShiftandCheckCheckboxes",
+        "CustomVideoPlayer","KeySequenceDetection","SlideinonScroll","JavascriptReferenceVScopy","LocalStorageandEventDelegate",
+        "MouseMoveShadow","SortWithoutArticles","AddingUpTimeWithReduce","WebCamFun","SpeechDetection",
+        "Geolocation","FollowAlongLinkHighlight","SpeechSynthesis","StickyNav","EventCapturePropagationBubblingandOnce",
+        "StripeFollowAlongNav","ClickAndDrag","VideoSpeedController","CountdownTimer","WhackAHole"],
+    "Introduction":[
+        "按下鍵盤發出的聲音效果","時鐘","利用JS控制CSS變數去改變效果","介紹JSarray的使用(開啟console)","利用flex的特性及transition的動畫效果做出點擊後的效果呈現",
+        "Fetchapi用ajax的方式來取資料，並依使用者輸入字符的不同查找不同的資料，會使用到正規表達式來處理字串","介紹JSarray的使用(開啟console)",
+        "透過Html的canvas標籤搭配JS做出畫布的效果","介紹常用的devtool(開啟console)","點擊checkbox後按下shift鍵之後一次選取多個checkbox的功能",
+        "客製化的撥放器","輸入一段密碼之後會出現特定的畫面","照片移入移出效果","介紹JS付值時，何時是用copy，何時是用reference(開啟console)",
+        "LocalStorage的使用","滑鼠在圖片的四周移動，會產生不一樣的效果","透過編排文章排序來複習sort, map, join 及replace, trim的使用",
+        "計算複數影片的長度來複習reduce及map的應用(開啟console)","驅動webcam來紀錄影像資訊，並輸出到canvas上","語音轉換API","使用Navigator.geolocation的API去擷取當前的地理位置狀況",
+        "反白的動畫效果","使用SpeechSynthesisUtterance物件，透過可以驅動瀏覽器說話的APIspeechSynthesis","把Nav固定在上方的效果",
+        "DOM事件的機制","滑鼠在NAV橫移時產生的動畫內容","左右橫移移動內容的效果","製作控制撥放速度的bar套用在video上","製作倒數計時","打地鼠的遊戲"
+    ]
+}

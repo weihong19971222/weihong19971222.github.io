@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-30-WhackAHole</title>
+    <link rel="stylesheet" href="./css/d-30/d-30.css">
+</head>
+
+<body>
+    <!-- 計分板 -->
+    <h1>Whack-a-mole! <span class="score">0</span></h1>
+    <!-- 開始鈕 -->
+    <button onClick="startGame()">Start!</button>
+
+    <div class="game">
+        <div class="hole hole1">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole2">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole3">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole4">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole5">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole6">
+            <div class="mole"></div>
+        </div>
+    </div>
+
+    <script>
+        const holes = document.querySelectorAll('.hole');
+        const scoreBoard = document.querySelector('.score');
+        const moles = document.querySelectorAll('.mole');
+        const btn=document.querySelector("button");
+        let lastHole;
+        // 遊戲時間到會顯示 true
+        let timeUp = false;
+        let score = 0;
+
+        // 隨機時間
+        // 傳入最大值跟最小值，計算出最大值跟最小值之間的整數隨機值並回傳
+        function randomTime(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        // 隨機洞
+        function randomHole(holes) {
+            // console.log(holes);
+            const idx = Math.floor(Math.random() * holes.length);
+            const hole = holes[idx];
+            // 如果和最後一次出現的洞重複了，就重跑一次函式
+            if (hole === lastHole) {
+                return randomHole(holes);
+            }
+            // 錄為最後一次出現的洞
+            lastHole = hole;
+            return hole;
+        }
+
+        function peep() {
+            // 0.2 ~ 0.8秒的隨機時間
+            const time = randomTime(200, 800);
+            const hole = randomHole(holes);
+            hole.classList.add('up');
+            setTimeout(() => {
+                hole.classList.remove('up');
+                // 如果遊戲時間還沒到，就會呼叫新的 peep()
+                if (!timeUp) peep();
+            }, time);
+        }
+
+        function startGame() {
+            score = 0
+            scoreBoard.textContent = score;
+            timeUp = false;
+            peep();
+            setTimeout(() => {
+                timeUp = true;
+            }, 10000);
+        }
+
+        function bonk(e) {
+            // isTrusted 可以分辨這個點擊是否為玩家操控，或是自動觸發的
+            if (!e.isTrusted) return
+            score++;
+            this.parentNode.classList.remove('up');
+            scoreBoard.textContent = score;
+        }
+
+        moles.forEach(mole => mole.addEventListener('click', bonk));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-9-DevTools</title>
+</head>
+
+<body>
+    <p class="dudo">I am Dudo.</p>
+    <script>
+
+        console.log('hello world');
+        // 在console.log中插入字串
+        console.log('hello %s', 'world');
+        // 在console.log中使用CSS %c放在要改變樣式的字串前方, 代表樣式的佔位符號
+        console.log('%c Big Dudi!', 'color: #780011; font-size: 32px;')
+
+        // 在控制台中顯示警告訊息
+        console.warn('%c Oh No!!!', 'background-color: gold; color: white;')
+
+        // 在控制台中顯示錯誤訊息
+        console.error('Holy shit!')
+
+        // 在控制台中顯示代表資訊的訊息
+        console.info('Old tree means trees older than 100 years.')
+
+        // assert可以用來測試
+        const testingUnit = document.querySelector('p')
+        console.assert(testingUnit.classList.contains('dudi'), 'There is no  dudi')
+
+        // 將之前顯示的控制台訊息清空
+        console.clear();
+
+        // 顯示某個元素的DOM物件
+        console.dir(testingUnit);
+
+        // console.group, console.groupCollapsed用來放在要群組畫的訊息的頭, 兩者差在被群組化的訊息是否一開始以摺疊的方式呈現
+        const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+        dogs.forEach(dog => {
+            console.groupCollapsed(`${dog.name}`)
+            console.log(`This is ${dog.name}`)
+            console.log(`${dog.name} is ${dog.age} years old.`)
+            console.groupEnd(`${dog.name}`)
+        });
+
+        // 計算某段程式碼被呼叫了幾次
+        for (let i = 0; i < 10; i++) {
+            console.count('dudi')
+            if (i % 3 === 1) { console.count('dudu') }
+        }
+
+        // 計算某段程式執行的時間
+        console.time('fetching data')
+        fetch('https://api.github.com/users/godlike0108')
+            .then(data => data.json())
+            .then(data => {
+                console.timeEnd('fetching data')
+                console.table(data)
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-23-SpeechSynthesis</title>
+    <link rel="stylesheet" href="./css/d-23/d-23.css">
+</head>
+
+<body>
+    <main>
+        <div class="voiceinator">
+            <h1>語音播報員</h1>
+            <select name="voice" id="voices">
+                <option value="">Select A Voice</option>
+            </select>
+            <label for="rate">Rate:</label>
+            <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+            <label for="pitch">Pitch:</label>
+            <input name="pitch" type="range" min="0" max="2" step="0.1">
+            <textarea name="text">Hello! I love JavaScript 👍</textarea>
+            <div id="bts">
+                <button id="stop">Stop!</button>
+                <button id="speak">Speak</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 創立SpeechSynthesisUtterance物件
+        const msg = new SpeechSynthesisUtterance();
+
+        let voices = [];
+        const voicesDropdown = document.querySelector('[name="voice"]');
+
+        const options = document.querySelectorAll('[type="range"], [name="text"]');
+        const speakButton = document.querySelector('#speak');
+        const stopButton = document.querySelector('#stop');
+
+        msg.volume=0.2;
+        //設定text為說話範本
+        msg.text = document.querySelector('[name="text"]').value;
+        
+        // 擷取語音模組清單
+        function populateVoices() {
+            // speechSynthesis.getVoices() 方法會回傳 SpeechSynthesisVoiceList
+            voices = this.getVoices();
+            voicesDropdown.innerHTML = voices
+                // .filter(voice => voice.lang.includes('en')) //加這串為篩選語系
+                .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+                .join('');
+        }
+
+        function setVoice() {
+            // voice 屬性可以設定要使用哪個語音模組
+            msg.voice = voices.find(voice => voice.name == this.value);
+            // 設定完就播放
+            toggle();
+        }
+
+        //作為開關, 預設帶入為true
+        function toggle(startOver = true) {
+            // 先停止
+            speechSynthesis.cancel();
+            // 如果 startOver 開關是打開的才會播放
+            if (startOver) {
+                // 讀出語音需求
+                speechSynthesis.speak(msg);
+            }
+        }
+
+        // SpeechSynthesisUtterance 的 pitch 屬性可以設定語音音調、rate 屬性可以設定語音速度
+        function setOption() {
+            msg[this.name] = this.value;
+            // 設定完就播放
+            toggle();
+        }
+
+        // voicechanged 事件則是在 SpeechSynthesisVoiceList 內容改變時會被觸發
+        // SpeechSynthesisVoiceList 是瀏覽器支援的語音所組成的清單，該清單會在瀏覽器頁面開啟時被安裝
+        // voicechanged 在瀏覽器開啟後， SpeechSynthesisVoiceList 安裝完畢時就會被觸發一次
+        speechSynthesis.addEventListener('voiceschanged', populateVoices);
+
+        voicesDropdown.addEventListener('change', setVoice);
+        options.forEach(option => option.addEventListener('change', setOption));
+        speakButton.addEventListener('click', toggle);
+        stopButton.addEventListener('click', () => toggle(false));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: "Comic Sans MS";
+    background-color: rgb(51, 73, 51);
+    padding-top: 50px;
+    h1{
+        text-align: center;
+        font-size: 48px;
+        line-height:1;
+        margin: 0;
+        .score{
+            background-color: rgba($color: #ffffff, $alpha: 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+    button{
+        background:none ;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        color: yellow;
+        font-size: 24px;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        transition: 0.5s;
+        &:hover{
+            color: red;
+        }
+    }
+    .game{
+        width: 800px;
+        height: 500px;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        border-radius: 5px;
+        margin: 50px auto;
+        display: flex;
+        flex-wrap: wrap;
+        cursor: url("https://downloads.totallyfreecursors.com/cursor_files/baseballbatwood2.cur"), url("https://downloads.totallyfreecursors.com/thumbnails/baseball-bat-wood2.gif"), auto;
+        .hole{
+            flex: 1 0 33.33%;
+            position: relative;
+            overflow: hidden;
+            &::after{
+                content: '';
+                background:url("../../image/dirt.svg") bottom center no-repeat ;
+                background-size: contain;
+                width: 100%;
+                height: 70px;
+                position: absolute;
+                z-index: 2;
+                bottom: -20px;
+            }
+            .mole{
+                background:url("../../image/cat.svg") bottom center no-repeat ;
+                background-size: 60%;
+                position: absolute;
+                top:100%;
+                width: 100%;
+                height: 100%;
+                transition: all 0.4ms;
+            }
+        }
+        .hole.up .mole{
+            top: 0;
+        }
+    }
+}

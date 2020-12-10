@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  background-color: #ffd000;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .inbox {
+  border-radius: 5px;
+  background-color: white;
+  width: 60%;
+  -webkit-box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+main .inbox .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+main .inbox .item:last-child {
+  border-bottom: 0px;
+}
+
+main .inbox .item input {
+  margin: 0 10px;
+}
+
+main .inbox .item input:checked + p {
+  background: #F9F9F9;
+  text-decoration: line-through;
+}
+
+main .inbox .item p {
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  border-left: 1px solid #D1E2FF;
+}
+/*# sourceMappingURL=d-10.css.map */

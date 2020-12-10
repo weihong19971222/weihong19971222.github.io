@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-4-ArrayCardio</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        const monkeys = [
+            { first: 'Andy', last: 'Tsai', banana: 18, bala: 12 },
+            { first: 'O', last: 'Tree', banana: 16, bala: 3 },
+            { first: 'Frog', last: 'X', banana: 23, bala: 14 },
+            { first: 'Penguin', last: 'Run', banana: 14, bala: 2 },
+            { first: 'Don', last: 'Slam', banana: 13, bala: 5 },
+        ];
+
+        // filter篩選 banana>10 and bala>2
+        // 方法一
+        const filterMonkeys1 = monkeys.filter(function (monkey) {
+            return monkey.banana > 10 && monkey.bala > 2;
+        });
+        // 方法二
+        const filterMonkeys2 = monkeys.filter(monkey => monkey.banana > 10 && monkey.bala > 2);
+
+        console.log(filterMonkeys1);
+        console.log(filterMonkeys2);
+
+        // map組合名稱
+        const fullname = filterMonkeys1.map(monkey => `${monkey.first} ${monkey.last}`);
+
+        console.log(fullname)
+
+        // sort排序 依照banana多到少
+        // 方法一
+        const bananaOrder = filterMonkeys1.sort((prev, next) => next.banana - prev.banana);
+
+        // 方法二
+        const ordered = filterMonkeys2.sort((a, b) => a.banana < b.banana ? 1 : -1);
+
+        console.log(bananaOrder);
+        console.table(ordered);
+
+        // reduce 計算banana 和 bala總數
+        const totalFruits = monkeys.reduce((total, monkey) => {
+            return total + (monkey.banana + monkey.bala)
+        }, 0);
+
+        console.log(totalFruits);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-28-VideoSpeedController</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: cadetblue;
+        }
+
+        .wrapper {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .speed {
+            background: #efefef;
+            width: 50px;
+            display: flex;
+            align-items: flex-start;
+            margin: 10px;
+            border-radius: 50px;
+            box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .speed-bar {
+            width: 100%;
+            background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            color: white;
+            height: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop
+            controls></video>
+        <div class="speed">
+            <div class="speed-bar">1×</div>
+        </div>
+    </div>
+
+    <script>
+        const speed = document.querySelector('.speed');
+        const bar = speed.querySelector('.speed-bar');
+        const video = document.querySelector('.flex');
+
+        // 調節播放速率的函式
+        function handlePlayback(e) {
+            // e.pageY:目前滑鼠在Y的位置
+            // this.offsetTop:元素在上方的位置
+            // this.offsetHeight:元素本身高度
+            // y:滑鼠與調節器原點距離
+            const y = e.pageY - this.offsetTop;
+            // 進度條所佔的比例
+            const percent = y / this.offsetHeight;
+            // 調節器最小值
+            const min = 0.4;
+            // 調節氣最大值
+            const max = 4;
+            // 將比例化為百分率
+            const height = Math.round(percent * 100) + '%'
+            // 用內插法將該比例換算為需要的播放速率
+            const playbackRate = min + (max - min) * percent;
+            console.log(percent);
+            bar.style.height = height;
+            bar.textContent = playbackRate.toFixed(2) + 'x';
+            // 將上了單位後的播放速率指定給影片本身
+            video.playbackRate = playbackRate;
+        }
+
+        speed.addEventListener('mousemove', handlePlayback);
+    </script>
+</body>
+
+</html>

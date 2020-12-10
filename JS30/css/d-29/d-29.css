@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  background-color: #5c8ea1;
+  height: 100vh;
+  font-family: "Comic Sans MS";
+}
+
+body .timer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .timer .timer_controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .timer .timer_controls form {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .timer .timer_controls form input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: 0;
+  padding: 5px;
+}
+
+body .timer .timer_controls .timer_button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 15px;
+}
+
+body .timer .timer_controls .timer_button:hover, body .timer .timer_controls .timer_button:focus {
+  background: rgba(0, 0, 0, 0.2);
+  outline: 0;
+}
+
+body .timer .display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .timer .display .display_end-time {
+  font-size: 4rem;
+  color: white;
+}
+
+body .timer .display .display_time-left {
+  font-weight: 100;
+  font-size: 20rem;
+  margin: 0;
+  color: white;
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+/*# sourceMappingURL=d-29.css.map */

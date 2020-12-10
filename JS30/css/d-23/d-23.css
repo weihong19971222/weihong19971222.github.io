@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  background-color: #252f2c;
+  font-family: sans-serif;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+main .voiceinator {
+  margin: auto;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+main .voiceinator h1 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: #252f2c;
+  padding: 10px 0;
+  background-color: #5e446e;
+  border-bottom: 5px solid #4b3d58;
+}
+
+main .voiceinator select, main .voiceinator textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border: 0;
+  background: #F7F7F7;
+  outline: 0;
+}
+
+main .voiceinator input {
+  padding: 10px;
+  border: 0;
+}
+
+main .voiceinator #bts {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+main .voiceinator #bts button {
+  width: 45%;
+  padding: 10px;
+  border: 0;
+  background-color: #5e446e;
+  margin-bottom: 10px;
+  border-bottom: 5px solid #4b3d58;
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+main .voiceinator #bts button:active {
+  top: 2px;
+}
+/*# sourceMappingURL=d-23.css.map */

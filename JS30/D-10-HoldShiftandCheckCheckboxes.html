@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-10-HoldShiftandCheckCheckboxes</title>
+    <link rel="stylesheet" href="./css/d-10/d-10.css">
+</head>
+
+<body>
+    <main>
+        <div class="inbox">
+            <div class="item">
+                <input type="checkbox">
+                <p>Mop the Floor</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Clean the toliet</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Clean the bed</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Wash dishes</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Watering plants</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Kick some ass</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const checkboxes = document.querySelectorAll(`.inbox input[type="checkbox"]`);
+        let lastChecked;
+        function handleCheck(e) {
+            let inBetween = false;//開關
+            // e.shiftKey是click事件的屬性, 如果click事件觸發的瞬間, Shift 鍵是被按下的, e.shiftKey便為true, 這可以用來代替e.keyCode == 16
+            if (e.shiftKey && this.checked) {
+                checkboxes.forEach(checkbox => {
+                    if (checkbox === this || checkbox === lastchecked) {
+                        inBetween = !inBetween;
+                    }
+                    if (inBetween) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+            lastchecked = this;
+        }
+
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+    </script>
+</body>
+
+</html>

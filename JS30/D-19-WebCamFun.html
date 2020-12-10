@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-19-WebCamFun</title>
+    <link rel="stylesheet" href="./css/d-19/d-19.css">
+</head>
+
+<body>
+    <main>
+        <!--拍照鈕-->
+        <div class="controls">
+            <button onClick="takePhoto(0)">Take Photo1(拍照)</button>
+            <button onClick="takePhoto(1)">Take Photo2(拍照)</button>
+            <button class="btnn" onClick="switchType(1)">rgb Split(RGB分離)</button>
+            <button class="btnn" onClick="switchType(2)">red Effect(紅色效果)</button>
+            <button class="btnn" onClick="switchType(3)">alpha Screen(去背模式)</button>
+            <div class="rgb" style='display:none;'>
+                <label for="rmin">Red Min:</label>
+                <input type="range" min=0 max=255 name="rmin">
+                <label for="rmax">Red Max:</label>
+                <input type="range" min=0 max=255 name="rmax">
+                <br>
+                <label for="gmin">Green Min:</label>
+                <input type="range" min=0 max=255 name="gmin">
+                <label for="gmax">Green Max:</label>
+                <input type="range" min=0 max=255 name="gmax">
+                <br>
+                <label for="bmin">Blue Min:</label>
+                <input type="range" min=0 max=255 name="bmin">
+                <label for="bmax">Blue Max:</label>
+                <input type="range" min=0 max=255 name="bmax">
+            </div>
+        </div>
+
+        <div class="photobooth">
+            <!-- 我們會將video的視訊同步畫到 canvas 畫布上，才能做畫面特效處理 -->
+            <h3>Canvas 2D繪製</h3>
+            <canvas class="photo"></canvas>
+            <canvas class="photo2"></canvas>
+            <!--接收視訊串流的 video 元素-->
+            <h3>原畫面</h3>
+            <video class="player"></video>
+            <img class="b_img" src="./image/green_test.png" alt="">
+            <!--展示拍照的地方-->
+            <div class="strip"></div>
+        </div>
+
+        <!-- 拍照會用的音效檔 -->
+        <audio class="snap" src="https://taira-komori.jpn.org/sound_os/daily01/turning_a_lock.mp3" hidden></audio>
+    </main>
+    <script src="./js/D-19.js"></script>
+</body>
+
+</html>

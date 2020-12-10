@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  font-family: "Comic Sans MS";
+  height: 100vh;
+  background-color: #97928e;
+}
+
+body nav {
+  position: relative;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+}
+
+body nav .cool {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body nav .cool li {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body nav .cool li a {
+  color: yellow;
+  text-decoration: none;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+body nav .cool li .dropdown {
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  padding: 20px;
+  top: -20px;
+  border-radius: 2px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+  will-change: opacity;
+  display: none;
+}
+
+body nav .cool li .dropdown .bio {
+  min-width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 1.7;
+}
+
+body nav .cool li .dropdown .bio img {
+  float: left;
+  margin-right: 20px;
+}
+
+body nav .cool li .dropdown a {
+  color: #ffc600;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+body nav .cool li .dropdown a.button {
+  width: 200px;
+  background: black;
+  display: block;
+  padding: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+body nav .cool li .dropdown .button[href*=twitter] {
+  background: #019FE9;
+}
+
+body nav .cool li .dropdown .button[href*=facebook] {
+  background: #3B5998;
+}
+
+body nav .cool li .courses {
+  min-width: 300px;
+}
+
+body nav .cool li .courses li {
+  padding: 10px 0;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body nav .cool .trigger-enter .dropdown {
+  display: block;
+}
+
+body nav .cool .trigger-enter-active .dropdown {
+  opacity: 1;
+}
+
+body nav .dropdownBackground {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s, opacity 0.1s, -webkit-transform 0.2s;
+  transition: all 0.3s, opacity 0.1s, -webkit-transform 0.2s;
+  transition: all 0.3s, opacity 0.1s, transform 0.2s;
+  transition: all 0.3s, opacity 0.1s, transform 0.2s, -webkit-transform 0.2s;
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0;
+}
+
+body nav .dropdownBackground .arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: white;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+
+body nav .dropdownBackground.open {
+  opacity: 1;
+}
+/*# sourceMappingURL=d-26.css.map */
