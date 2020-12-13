@@ -1,21 +1,96 @@
+*{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
+    header{
+        h1{
+            text-align: center;
+            padding: 15px 0;
+            border-bottom:2px solid rgba(201, 142, 142, 0.2) ;
+        }
+        nav{
+            a{
+                margin-right: 20px;
+                color: rgb(139, 139, 139);
+                &:hover{
+                    color:  rgb(139, 139, 139);
+                }
+            }
+        }
+    }
     main{
-        .container{
-            h2{
+        #info_me{
+            h5{
                 font-weight: 900;
             }
+            h4{
+                font-family: DFKai-sb;
+                color: cornflowerblue;
+            }
+            #code_group{
+                padding-left: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                .code{
+                    position: relative;
+                    margin-right: 20px;
+                    font-family: "Comic Sans MS";
+                    .dot{
+                        position: absolute;
+                        top: 50%;
+                        left: -8px;
+                        transform: translate(0,-50%);
+                        border-radius: 50%;
+                        width: 5px;
+                        height: 5px;
+                    }
+                }
+            }
+            .system_group{
+                padding-left: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                .system{
+                    margin-right: 20px;
+                    font-family: "Comic Sans MS";
+                }
+            }
+        }
+        #portfolios{
             .row{
-                .col-md-6{
-                    .card{
-                        .card-img-top{
-                            height: 50px;
-                            background-color: rgb(187, 183, 183);
+                margin: auto;
+                width: 95%;
+                .col-12{
+                    margin-bottom: 10px;
+                    padding: 0 5px;
+                    h6{
+                        text-align: center;
+                        background-color: rgb(155, 154, 154);
+                        border-radius: 5px 5px 0px 0;
+                        padding: 8px 0;
+                        margin-bottom: 0;
+                        color: white;
+                    }
+                    .pf_info{
+                        width: 100%;
+                        border:1px solid rgba($color: grey, $alpha: 0.5);
+                        padding: 8px;
+                        position: relative;
+                        height: 100px;
+                        a{
+                            position: absolute;
+                            bottom: 5px;
+                            right: 8px;
                         }
                     }
                 }
             }
         }
-
+        #information{
+            h5{
+                padding-left: 15px;
+            }
+        }
     }
 }

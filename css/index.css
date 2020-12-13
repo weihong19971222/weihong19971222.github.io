@@ -1,13 +1,110 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }
 
-body main .container h2 {
+body header h1 {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(201, 142, 142, 0.2);
+}
+
+body header nav a {
+  margin-right: 20px;
+  color: #8b8b8b;
+}
+
+body header nav a:hover {
+  color: #8b8b8b;
+}
+
+body main #info_me h5 {
   font-weight: 900;
 }
 
-body main .container .row .col-md-6 .card .card-img-top {
-  height: 50px;
-  background-color: #bbb7b7;
+body main #info_me h4 {
+  font-family: DFKai-sb;
+  color: cornflowerblue;
+}
+
+body main #info_me #code_group {
+  padding-left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+body main #info_me #code_group .code {
+  position: relative;
+  margin-right: 20px;
+  font-family: "Comic Sans MS";
+}
+
+body main #info_me #code_group .code .dot {
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+}
+
+body main #info_me .system_group {
+  padding-left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+body main #info_me .system_group .system {
+  margin-right: 20px;
+  font-family: "Comic Sans MS";
+}
+
+body main #portfolios .row {
+  margin: auto;
+  width: 95%;
+}
+
+body main #portfolios .row .col-12 {
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+body main #portfolios .row .col-12 h6 {
+  text-align: center;
+  background-color: #9b9a9a;
+  border-radius: 5px 5px 0px 0;
+  padding: 8px 0;
+  margin-bottom: 0;
+  color: white;
+}
+
+body main #portfolios .row .col-12 .pf_info {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  padding: 8px;
+  position: relative;
+  height: 100px;
+}
+
+body main #portfolios .row .col-12 .pf_info a {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+}
+
+body main #information h5 {
+  padding-left: 15px;
 }
 /*# sourceMappingURL=index.css.map */

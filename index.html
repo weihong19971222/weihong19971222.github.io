@@ -2,100 +2,119 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鄭韋鋐作品集</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鄭韋鋐作品集</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-  <nav></nav>
-  <main class="w-100">
-    <div class="container">
-      <h2>網頁作品</h2>
-      <div class="row">
-
-        <div class="col-md-6 col-12 mt-4 ">
-          <div class="card shadow">
-            <div class="card-img-top"></div>
-            <div class="card-body">
-              <h5 class="card-title">Bootstrap網頁_CX5</h5>
-              <p class="card-text">使用bootstrap排版網頁,主題為汽車CX5</p>
-              <button type="button" class="lbox_btn btn btn-outline-danger mt-2" data-name="bst_cx5" data-toggle="modal"
-                data-target=".bd-example-modal-lg">預覽圖</button>
-              <a href="./bootstrap_cx5" class="btn btn-primary mt-2">進入網站</a>
+    <header class="container">
+        <h1>portfolio</h1>
+        <nav>
+            <a href="">自我介紹</a>
+            <a href="">作品集</a>
+            <a href="">聯絡資訊</a>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <div id="info_me">
+            <h3>Self introduction</h3>
+            <hr>
+            <h5>鄭韋鋐 <small>Wei-Hong-Zheng</small></h5>
+            <h6>中州科技大學-多媒體與遊戲發展學系</h6>
+            <h4 class="mt-2">程式語言專長</h4>
+            <div id="code_group">
+                <div class="code"><div class="dot"></div>HTML</div>
+                <div class="code"><div class="dot"></div>CSS</div>
+                <div class="code"><div class="dot"></div>SCSS</div>
+                <div class="code"><div class="dot"></div>JavaScript</div>
+                <div class="code"><div class="dot"></div>JQuery</div>
+                <div class="code"><div class="dot"></div>BootStrap</div>
+                <div class="code"><div class="dot"></div>Laravel</div>
+                <div class="code"><div class="dot"></div>Vue.js</div>
+                <div class="code"><div class="dot"></div>RWD</div>
+                <div class="code"><div class="dot"></div>PHP</div>
+                <div class="code"><div class="dot"></div>MySQL</div>
+                <div class="code"><div class="dot"></div>Python</div>
+                <div class="code"><div class="dot"></div>Java</div>
+                <div class="code"><div class="dot"></div>C</div>
             </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-12 mt-4">
-          <div class="card shadow">
-            <div class="card-img-top"></div>
-            <div class="card-body">
-              <h5 class="card-title">Nintendo網頁</h5>
-              <p class="card-text">任天堂練習自改網頁</p>
-              <button type="button" class="lbox_btn  btn btn-outline-danger mt-2" data-name="nintendo" data-toggle="modal"
-                data-target=".bd-example-modal-lg">預覽圖</button>
-              <a href="./nintendo" class="btn btn-primary mt-2">進入網站</a>
+            <h4 class="mt-2">作業系統及軟體</h4>
+            <div class="system_group">
+                <div class="system">Windows XP~windows10</div>
+                <div class="system">Linux</div>
+                <div class="system">Unity</div>
+                <div class="system">VSCode</div>
+                <div class="system">PS</div>
+                <div class="system">AI</div>
+                <div class="system">Pycharm</div>
+                <div class="system">PhpStorm</div>
             </div>
-          </div>
         </div>
-
-        <div class="col-md-6 col-12 mt-4">
-          <div class="card shadow">
-            <div class="card-img-top"></div>
-            <div class="card-body">
-              <h5 class="card-title">Maplestory網頁</h5>
-              <p class="card-text">楓之谷網頁</p>
-              <button type="button" class="lbox_btn  btn btn-outline-danger mt-2" data-name="maplestory" data-toggle="modal"
-                data-target=".bd-example-modal-lg">預覽圖</button>
-              <a href="./maplestory" class="btn btn-primary mt-2">進入網站</a>
+        <div id="portfolios" class="mt-4">
+            <h3>Portfolio</h3>
+            <hr>
+            <div class="row">
+                <div v-for="pfolio in pfolios" class="col-12 col-sm-6 col-md-4 ">
+                    <h6>{{pfolio.title}}</h6>
+                    <div class="pf_info">
+                        <p>{{pfolio.content}}</p>
+                        <a :href="pfolio.link" target="_blank">連結</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="col-md-6 col-12 mt-4">
-          <div class="card shadow">
-            <div class="card-img-top"></div>
-            <div class="card-body">
-              <h5 class="card-title">麗王模型網頁</h5>
-              <p class="card-text">個人專題</p>
-              <button type="button" class="lbox_btn  btn btn-outline-danger mt-2" data-name="zw_gundam" data-toggle="modal"
-                data-target=".bd-example-modal-lg">預覽圖</button>
-              <a href="./zw_gundam" class="btn btn-primary mt-2">進入網站</a>
-            </div>
-          </div>
+        <div id="information" class="mt-4">
+            <h3>Contact information</h3>
+            <hr>
+            <h5>E-mail:<small>weihong19971222@gmail.com</small></h5>
         </div>
-
-      </div>
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-  <footer></footer>
+    </main>
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      $(".lbox_btn").click(function(){
-        $(".modal-content").html(`<img width="100%" src="./img/${$(this).data('name')}.png" alt="">`);
-      });
+        new Vue({
+            el:"#portfolios",
+            data:{
+                pfolios:[]
+            },
+            mounted() {
+                axios.get('./data/portfolios.json').then((response) => {
+                    this.pfolios=response.data;
+                }).catch(error => { console.log(error); });
+            },
+        })
+    
+        function portfolios_size(){
+            let pf_info_height;
+            console.log($(".pf_info"));
+            $(".pf_info").each(function(){
+                console.log("111");
+            })
+        }
+        portfolios_size();
+
+        $(".dot").each(function(){
+            const r=Math.random()*255;
+            const g=Math.random()*255;
+            const b=Math.random()*255;
+            const colors="rgb("+r+","+g+","+b+")";
+            $(this).css("background-color",colors);
+        })
     </script>
 </body>
 
