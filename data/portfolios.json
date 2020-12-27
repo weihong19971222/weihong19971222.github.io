@@ -4,5 +4,6 @@
     {"title":"汽車介紹網站","content":"BootStrap網格排版與元件使用，並添加RWD","link":"/bootstrap_cx5"},
     {"title":"MapleStory","content":"RWD練習作品 主題為遊戲新楓之谷","link":"/maplestory"},
     {"title":"Tripbnb","content":"接案作品把原網站製作RWD效果","link":"https://tripbnb.com/index.php"},
-    {"title":"模型網站","content":"自行設計切版作品 主題為鋼彈模型店","link":"/zw_gundam"}
+    {"title":"模型網站","content":"自行設計切版作品 主題為鋼彈模型店","link":"/zw_gundam"},
+    {"title":"VUE記事本","content":"使用firebase+vue.js製作簡易記事本","link":"/firebase_vuenote"}
 ]
