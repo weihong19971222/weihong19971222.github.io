@@ -68,14 +68,14 @@
                         let cont = doc.data().content;
                         this.liffsubmit(id,cont);
                     });
-                    liff.closeWindow();
+                    
                 },
-                liffsubmit(myLiffId,content){
+                async liffsubmit(myLiffId,content){
                     
                     const con = `{"type": "flex",
                                 "altText": "This is a Flex Message",
                                 "contents":${content}}`;
-                    liff
+                    await liff
                         .init({
                             liffId: myLiffId
                         })
@@ -84,6 +84,7 @@
                         .then(function (res) {
                             if (res) {
                                 console.log(`[${res.status}] Message sent!`)
+                                liff.closeWindow()
                             } else {
                                 const [majorVer, minorVer] = (liff.getLineVersion() || "").split('.');
                                 if (parseInt(majorVer) == 10 && parseInt(minorVer) < 11) {
