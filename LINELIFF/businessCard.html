@@ -64,10 +64,12 @@
                 async submit(key) {
                     const data = db.collection('linecard').doc(key);
                     await data.get().then(doc => {
-                        const id = doc.data().LIFFID;
-                        const cont = doc.data().content;
+                        let id = doc.data().LIFFID;
+                        let cont = doc.data().content;
+                        this.liffsubmit(id,cont);
                     });
-                    this.liffsubmit(id,cont);
+                    // console.log(id);
+                    // this.liffsubmit(id,cont);
                 },
                 liffsubmit(myLiffId,content){
                     liff
