@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Bootstrap 4 CSS 的 CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+     crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <div v-for="note of notes" :key="note['.key']">
+            <h1>{{note['.key']}}</h1>
+            <input :id="'ipt'+note['.key']" type="text" :value=note.LIFFID><br>
+            <textarea :id="'tex'+note['.key']" cols="150" rows="10">{{ note.content }}</textarea><br>
+            <button class="btn btn-info" @click="updata(note['.key'])">更新</button>
+        </div>
+    </div>
+
+     <!-- Vue 的 CDN -->
+     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+     <!-- Bootstrap 4 JavaScript 的 CDN -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+         crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+         crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+         crossorigin="anonymous"></script>
+ 
+     <!-- 引入 firestore 的 CDN -->
+     <script src="https://unpkg.com/vue-firestore"></script>
+ 
+    <!-- Vue實例的程式碼 -->
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyDhyQCXdFj0oV6sI8TQk4wMgu6LA9JiJMA",
+            authDomain: "notes1071201-4abad.firebaseapp.com",
+            databaseURL: "https://notes1071201-4abad.firebaseio.com",
+            projectId: "notes1071201-4abad",
+            storageBucket: "notes1071201-4abad.appspot.com",
+            messagingSenderId: "487180950464",
+            appId: "1:487180950464:web:e7e1f32b671e24642c4625"
+        };
+ 
+        let app=firebase.initializeApp(firebaseConfig);
+ 
+         let db = app.firestore()
+         const settings = {/* your settings... */ timestampsInSnapshots: true };
+         db.settings(settings);
+ 
+         new Vue({
+             el: '#app',
+             data:{},
+             firestore() {
+                 return {
+                     notes: db.collection('linecard')
+                 }
+             },
+             methods: {
+                async updata(key) {
+                    const id = document.getElementById('ipt'+key).value;
+                    const con = document.getElementById('tex'+key).innerHTML;
+                    await db.collection('linecard').doc(key).update({content:con,LIFFID:id});
+                    location.reload();
+                }
+             }
+         })
+     </script>
+</body>
+</html>
