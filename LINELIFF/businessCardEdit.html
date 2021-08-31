@@ -64,7 +64,7 @@
              methods: {
                 async updata(key) {
                     const id = document.getElementById('ipt'+key).value;
-                    const con = document.getElementById('tex'+key).innerHTML;
+                    const con = document.getElementById('tex'+key).value;
                     await db.collection('linecard').doc(key).update({content:con,LIFFID:id});
                     location.reload();
                 }
