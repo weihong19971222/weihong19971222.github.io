@@ -68,19 +68,18 @@
                         let cont = doc.data().content;
                         this.liffsubmit(id,cont);
                     });
-                    // console.log(id);
-                    // this.liffsubmit(id,cont);
                 },
                 liffsubmit(myLiffId,content){
+                    
+                    const con = `{"type": "flex",
+                                "altText": "This is a Flex Message",
+                                "contents":${content}}`;
                     liff
                         .init({
                             liffId: myLiffId
                         })
                         .then((e) => {
-                            liff.shareTargetPicker([{
-                                "type": "flex",
-                                "altText": "This is a Flex Message",
-                                "contents": content}])
+                            liff.shareTargetPicker([JSON.parse(con)])
                         .then(function (res) {
                             if (res) {
                                 console.log(`[${res.status}] Message sent!`)
