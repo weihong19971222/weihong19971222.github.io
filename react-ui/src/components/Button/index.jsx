@@ -3,13 +3,15 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useColor } from 'hooks/useColor';
+import { useColor } from '../../hooks/useColor';
 
+// 按鈕  
 const containedStyle = css`
   background: ${(props) => props.$btnColor};
   color: #FFF;
 `;
 
+// 按鈕邊框  
 const outlinedStyle = css`
   background: #FFF;
   color: ${(props) => props.$btnColor};
@@ -19,6 +21,7 @@ const outlinedStyle = css`
   }
 `;
 
+// 按鈕文字  
 const textStyle = css`
   background: #FFF;
   color: ${(props) => props.$btnColor};
@@ -27,6 +30,7 @@ const textStyle = css`
   }
 `;
 
+// 禁用
 const disabledStyle = css`
   cursor: not-allowed;
   &:hover, &:active {
@@ -53,6 +57,7 @@ const EndIcon = styled.span`
   margin-left: 8px;
 `;
 
+// 預設樣式
 const StyledButton = styled.button`
   border: none;
   outline: none;
@@ -92,6 +97,8 @@ const Button = ({
   onClick,
   ...props
 }) => {
+
+  
   const { makeColor } = useColor();
   const btnColor = makeColor({ themeColor, isDisabled });
 
