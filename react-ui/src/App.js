@@ -3,10 +3,11 @@ import './App.css';
 import Button from './components/Button';
 
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
-      <Button  >
+      <Button variant="outlined">
         Button
       </Button>
         <img src={logo} className="App-logo" alt="logo" />

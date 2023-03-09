@@ -5,28 +5,28 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useColor } from '../../hooks/useColor';
 
-// 按鈕  
+// 一般按鈕  
 const containedStyle = css`
-  background: ${(props) => props.$btnColor};
-  color: #FFF;
+  background: ${(props) => props.$btnColor.bgColor};
+  color: ${(props) => props.$btnColor.color};
 `;
 
-// 按鈕邊框  
+// 邊框按鈕  
 const outlinedStyle = css`
   background: #FFF;
-  color: ${(props) => props.$btnColor};
-  border: 1px solid ${(props) => props.$btnColor};
+  color: ${(props) => props.$btnColor.bgColor};
+  border: 1px solid ${(props) => props.$btnColor.bgColor};
   &:hover {
-    background: ${(props) => `${props.$btnColor}10`};
+    background: ${(props) => `${props.$btnColor.bgColor}10`};
   }
 `;
 
-// 按鈕文字  
+// 文字按鈕  
 const textStyle = css`
   background: #FFF;
-  color: ${(props) => props.$btnColor};
+  color: ${(props) => props.$btnColor.bgColor};
   &:hover {
-    background: ${(props) => `${props.$btnColor}10`};
+    background: ${(props) => `${props.$btnColor.bgColor}10`};
   }
 `;
 
@@ -57,7 +57,6 @@ const EndIcon = styled.span`
   margin-left: 8px;
 `;
 
-// 預設樣式
 const StyledButton = styled.button`
   border: none;
   outline: none;
@@ -108,7 +107,7 @@ const Button = ({
       className={className}
       $btnColor={btnColor}
       $variant={variant}
-      disabled={isDisabled}
+      disabled={isDisabled || isLoading}
       onClick={onClick}
       {...props}
     >
@@ -129,44 +128,27 @@ const Button = ({
 };
 
 Button.propTypes = {
-  /**
-   * 設置按鈕類型
-   */
+  // 按鈕類型
   variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
-  /**
-   * 客製化樣式
-   */
+  // 客製化樣式
   className: PropTypes.string,
-  /**
-   * 內容
-   */
+  // 內容
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
-  /**
-   * 主題配色，primary、secondary 或是自己傳入色票
-   */
+  // 主題配色 或色票
   themeColor: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
-  /**
-   * 載入中狀態
-   */
+  // 載入中狀態
   isLoading: PropTypes.bool,
-  /**
-   * 禁用狀態
-   */
+  // 禁用狀態
   isDisabled: PropTypes.bool,
-  /**
-   * 設置按鈕左方圖示
-   */
+  // 按鈕左方圖示
   startIcon: PropTypes.element,
-  /**
-   * 設置按鈕右方圖示
-   */
+  // 按鈕右方圖示
   endIcon: PropTypes.element,
-  /**
-   * 點擊事件
-   */
+  // 點擊事件
   onClick: PropTypes.func,
 };
 
+// 預設
 Button.defaultProps = {
   variant: 'contained',
   className: null,
