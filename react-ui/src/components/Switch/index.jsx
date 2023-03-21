@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { useColor } from 'hooks/useColor';
+import { useColor } from '../../hooks/useColor';
 
 const transitionStyle = css`
   transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, right 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -10,12 +10,12 @@ const transitionStyle = css`
 const SwitchButton = styled.div`
   height: ${(props) => props.$thumbSize}px;
   width: ${(props) => props.$switchWidth}px;
-  background: ${(props) => props.$switchColor};
+  background: ${(props) => props.$switchColor.bgColor};
   display: inline-flex;
   color: #FFF;
   border-radius: 50px;
   position: relative;
-  border: 3px solid ${(props) => props.$switchColor};
+  border: 3px solid ${(props) => props.$switchColor.bgColor};
   cursor: ${(props) => (props.$isDisabled ? 'not-allowed' : 'pointer')};
   box-sizing: content-box;
 `;
