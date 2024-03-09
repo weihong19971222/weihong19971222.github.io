@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>API工具</title>
+    <style>
+        body{
+            padding: 40px;
+        }
+        .func-container{
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid grey;
+            width: 800px;
+            margin-bottom: 5px;
+        }
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
+    </style>
+</head>
+<body>
+    <h2>YCS</h2>
+    <div class="func-container">
+        <h4>解密DECODE</h4>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >KEY</span>
+            <input id="decode-key" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >IV</span>
+            <input id="decode-iv" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >密文</span>
+            <textarea id="decode-text" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
+        </div>
+        <button type="button" class="btn btn-success" onclick="ycsDecode()">解密</button>
+        <pre id="decode-pre"></pre>
+    </div>
+
+    <div class="func-container">
+        <h4>隨機加密ENCODE</h4>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >KEY</span>
+            <input id="encode-key" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >IV</span>
+            <input id="encode-iv" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button type="button" class="btn btn-success" onclick="ycsEncode()">加密</button>
+        <pre id="encode-pre"></pre>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- crypto -->
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/evpkdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/cipher-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/aes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/pad-pkcs7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/mode-ecb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-utf8.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-hex.min.js"></script>
+
+    <script>
+
+        function ycsDecode(){
+            const key = $(`#decode-key`).val();
+            const iv = $(`#decode-iv`).val();
+            const text = $(`#decode-text`).val();
+            if(key == '' || iv == '' || text == ''){
+                alert('補齊資料')
+                return
+            }
+            const encrypted = CryptoJS.AES.decrypt(
+                text,
+                CryptoJS.enc.Utf8.parse(key),
+                {
+                    iv:CryptoJS.enc.Utf8.parse(iv),
+                    mode:CryptoJS.mode.CBC,
+                    padding:CryptoJS.pad.Pkcs7
+                }
+            );
+            try {
+                const response =encrypted.toString(CryptoJS.enc.Utf8)
+                $(`#decode-pre`).html(syntaxHighlight(response))
+            }catch (e) {
+                alert('解析錯誤')
+            }
+        }
+
+        function ycsEncode(){
+            const key = $(`#encode-key`).val();
+            const iv = $(`#encode-iv`).val();
+            const data = JSON.stringify([{
+                "trackingNumber" : "GMOMO0000"+getRandomInt(99999).toString(),
+                "numOfPackage":"1",
+                "weight":"0",
+                "size":"0.99",
+                "remarks":"管理員代收管理員代收管理員代收管理員代收管理員代收管理員代收管理員代收",
+                "name":"A先生A先生A先生A先生A先生A先生",
+                "address":"彰化縣溪州鄉大同北路28-1號彰化縣溪州鄉大同北路28-1號",
+                "phone":"09888888880988888888",
+                "company":"創力美股份有限公司股份有限公司股份有限公司",
+                "send_name":"B小姐B小姐B小姐B小姐B小姐B小姐B小姐",
+                "send_company":"ssss",
+                "collection" : "100"
+            }])
+            const encrypted =CryptoJS.AES.encrypt(
+                data,
+                CryptoJS.enc.Utf8.parse(key),
+                {
+                    iv:CryptoJS.enc.Utf8.parse(iv),
+                    mode:CryptoJS.mode.CBC,
+                    padding:CryptoJS.pad.Pkcs7
+                }
+            );
+            $(`#encode-pre`).html(syntaxHighlight(encrypted.toString()))
+        }
+
+        // 格式化json顯示
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
+            }
+            json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+        // 隨機數
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+    </script>    
+
+</html>
