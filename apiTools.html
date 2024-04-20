@@ -59,6 +59,24 @@
         <pre id="encode-pre"></pre>
     </div>
 
+    <div class="func-container">
+        <h4>加密ENCODE</h4>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >KEY</span>
+            <input id="encodeb-key" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >IV</span>
+            <input id="encodeb-iv" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >字串</span>
+            <textarea id="encodeb-text" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
+        </div>
+        <button type="button" class="btn btn-success" onclick="ycsEncodeb()">加密</button>
+        <pre id="encodeb-pre"></pre>
+    </div>
+
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <!-- jquery -->
@@ -132,6 +150,22 @@
             $(`#encode-pre`).html(syntaxHighlight(encrypted.toString()))
         }
 
+        function ycsEncodeb(){
+            const key = $(`#encodeb-key`).val();
+            const iv = $(`#encodeb-iv`).val();
+            const text = $(`#encodeb-text`).val();
+            const encrypted =CryptoJS.AES.encrypt(
+                text,
+                CryptoJS.enc.Utf8.parse(key),
+                {
+                    iv:CryptoJS.enc.Utf8.parse(iv),
+                    mode:CryptoJS.mode.CBC,
+                    padding:CryptoJS.pad.Pkcs7
+                }
+            );
+            $(`#encodeb-pre`).html(syntaxHighlight(encrypted.toString()))
+        }
+        
         // 格式化json顯示
         function syntaxHighlight(json) {
             if (typeof json != 'string') {
